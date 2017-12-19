@@ -1,0 +1,81 @@
+{
+	"header": [
+		{
+			"type": {
+				"type": 0
+			},
+			"name": "Name"
+		},
+		{
+			"type": {
+				"type": 1
+			},
+			"name": "Description"
+		},
+		{
+			"type": {
+				"type": 3
+			},
+			"name": "Can Be Sold"
+		},
+		{
+			"type": {
+				"type": 7,
+				"reference": "Equippable"
+			},
+			"name": "Base Color"
+		},
+		{
+			"type": {
+				"type": 2
+			},
+			"name": "Damage Reduction"
+		}
+	],
+	"contents": {
+		"LeatherArmor": {
+			"Name": "Leather Armor",
+			"Description": "Leather Armor",
+			"Can Be Sold": true,
+			"Base Color": {
+				"red": 89,
+				"green": 74,
+				"blue": 71
+			},
+			"Damage Reduction": 5
+		},
+		"IronArmor": {
+			"Name": "Iron Armor",
+			"Description": "Iron Armor!",
+			"Can Be Sold": true,
+			"Base Color": {
+				"red": 141,
+				"green": 131,
+				"blue": 129
+			},
+			"Damage Reduction": 15
+		},
+		"StoneArmor": {
+			"Name": "Stone Armor",
+			"Description": "You must gather your party before venturing forth.",
+			"Can Be Sold": true,
+			"Base Color": {
+				"red": 48,
+				"green": 52,
+				"blue": 63
+			},
+			"Damage Reduction": 10
+		},
+		"WoodenArmor": {
+			"Name": "WoodenArmor",
+			"Description": "",
+			"Can Be Sold": true,
+			"Base Color": {
+				"red": 112,
+				"green": 93,
+				"blue": 71
+			},
+			"Damage Reduction": 0
+		}
+	}
+}

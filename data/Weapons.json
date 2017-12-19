@@ -1,0 +1,49 @@
+{
+	"header": [
+		{
+			"type": {
+				"type": 0
+			},
+			"name": "Name"
+		},
+		{
+			"type": {
+				"type": 1
+			},
+			"name": "Description"
+		},
+		{
+			"type": {
+				"type": 3
+			},
+			"name": "Can Be Sold"
+		}
+	],
+	"contents": {
+		"IronSword": {
+			"Name": "Iron Sword",
+			"Description": "An iron sword.",
+			"Can Be Sold": true
+		},
+		"WoodenSword": {
+			"Name": "Wooden Sword",
+			"Description": "",
+			"Can Be Sold": false
+		},
+		"StoneSword": {
+			"Name": "Stone Sword",
+			"Description": "",
+			"Can Be Sold": true
+		},
+		"GoldenSword": {
+			"Name": "Golden Sword",
+			"Description": "",
+			"Can Be Sold": true
+		},
+		"DiamondSword": {
+			"Name": "Diamond Sword",
+			"Description": "",
+			"Can Be Sold": true
+		}
+	}
+}
