@@ -18,7 +18,7 @@ static func write_value(value, tabs=0):
 	elif typeof(value) == TYPE_ARRAY:
 		string += write_array(value, tabs, false)
 	else:
-		string += "\"%s\"" % value.c_escape()
+		string += "\"%s\"" % str(value).c_escape()
 	return string
 
 static func write_array(variant, tabs=0, start_tabbed = false):

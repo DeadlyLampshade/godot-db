@@ -27,8 +27,14 @@ func prepare(dict):
 func clean():
 	return $OptionButton.get_item_metadata($OptionButton.selected)
 
+func find_metadata(data):
+	for i in range($OptionButton.get_item_count()):
+		if $OptionButton.get_item_metadata(i) == data:
+			return i
+	return 0
+
 func unclean(data):
 	if data != null:
-		$OptionButton.select(data)
+		$OptionButton.select(find_metadata(data))
 	else:
 		$OptionButton.select(0)

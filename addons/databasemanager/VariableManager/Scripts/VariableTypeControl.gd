@@ -10,7 +10,7 @@ func _ready():
 
 func clean():
 	var dict = {"type": $VariableType.get_item_metadata($VariableType.selected)}
-	if $VariableType.selected == enums.DATA_TYPE.REFERENCE:
+	if dict.type == enums.DATA_TYPE.REFERENCE:
 		dict.reference = $ReferenceType.get_item_text($ReferenceType.selected)
 	return dict
 

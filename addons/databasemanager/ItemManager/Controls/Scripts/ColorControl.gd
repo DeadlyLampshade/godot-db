@@ -14,6 +14,9 @@ func _ready():
 	GreenSlider.connect("value_changed", self, "update_color")
 	BlueSlider.connect("value_changed", self, "update_color")
 
+func prepare(dict):
+	return
+
 func update_color(value):
 	ColorDisplay.color = Color8(RedSlider.value, GreenSlider.value, BlueSlider.value, 255)
 

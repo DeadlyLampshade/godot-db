@@ -101,7 +101,11 @@ func unserialize_data(data):
 	
 	for i in range(data.size()):
 		var dt = create_data_type(keys[i])
-		dt.set_metadata(0, values[i].header)
+		
+		if values[i].has("header"):
+			dt.set_metadata(0, values[i].header)
+		else:
+			dt.set_metadata(0, [])
 		
 		var keys_internal = values[i].contents.keys()
 		var values_internal = values[i].contents.values()

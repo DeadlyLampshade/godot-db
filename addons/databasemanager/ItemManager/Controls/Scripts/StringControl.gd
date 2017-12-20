@@ -7,6 +7,9 @@ func set_name(value):
 	name = value
 	$Label.text = "%s: " % name
 
+func prepare(dict):
+	return
+
 func clean():
 	return $LineEdit.text
 
