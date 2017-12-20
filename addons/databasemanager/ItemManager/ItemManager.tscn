@@ -2,8 +2,7 @@
 
 [ext_resource path="res://addons/databasemanager/ItemManager/Scripts/ItemManager.gd" type="Script" id=1]
 
-
-[node name="ItemManager" type="VBoxContainer"]
+[node name="ItemManager" type="GridContainer"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -16,7 +15,7 @@ rect_clip_content = false
 mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
-alignment = 0
+columns = 1
 script = ExtResource( 1 )
 _sections_unfolded = [ "Mouse", "Size Flags" ]
 

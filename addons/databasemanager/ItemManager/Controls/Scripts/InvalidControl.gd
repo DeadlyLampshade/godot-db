@@ -11,7 +11,7 @@ func prepare(dict):
 	return
 
 func clean():
-	return ""
+	return null
 
 func unclean(variant):
 	pass

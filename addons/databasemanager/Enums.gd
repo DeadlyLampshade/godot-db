@@ -9,7 +9,10 @@ enum DATA_TYPE {
 	REFERENCE=4,
 	STRUCTURE=5,
 	ARRAY=6,
-	COLOR = 7
+	COLOR = 7,
+	VECTOR2 = 8,
+	VECTOR3 = 9,
+	RECT = 10
 }
 
 const DATA_TYPE_LIST = [
@@ -20,5 +23,8 @@ const DATA_TYPE_LIST = [
 	["Color", DATA_TYPE.COLOR],
 	["Reference", DATA_TYPE.REFERENCE],
 	["Structure", DATA_TYPE.STRUCTURE],
+	["Vector2", DATA_TYPE.VECTOR2],
+	["Vector3", DATA_TYPE.VECTOR3],
+	["Rect", DATA_TYPE.RECT],
 	#["Array", DATA_TYPE.ARRAY]
 ]

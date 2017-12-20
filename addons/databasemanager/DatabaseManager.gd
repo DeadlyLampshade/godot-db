@@ -131,6 +131,8 @@ func _unhandled_input(event):
 				if current_selection != null:
 					current_selection.free()
 					current_selection = null
+					variableManager.erase_controls()
+					itemManager.clear_control_list()
 					tree.accept_event()
 
 func create_item_for_selection():

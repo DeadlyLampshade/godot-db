@@ -11,6 +11,9 @@ const BOOLEAN_CONTROL = preload("../Controls/CheckButtonControl.tscn")
 const INVALID_CONTROL = preload("../Controls/InvalidControl.tscn")
 const REFERENCE_CONTROL = preload("../Controls/ReferenceControl.tscn")
 const STRUCTURE_CONTROL = preload("../Controls/StructureControl.tscn")
+const VECTOR2_CONTROL = preload("../Controls/Vector2Control.tscn")
+const VECTOR3_CONTROL = preload("../Controls/Vector3Control.tscn")
+const RECT_CONTROL = preload("../Controls/RectControl.tscn")
 
 var control_list = []
 
@@ -24,7 +27,8 @@ func populate_control_list(header, item_values):
 	pass
 
 func add_control(header_name, header_type, item_values):
-	var control
+	var control = INVALID_CONTROL.instance()
+	#match(header_type.type):
 	if header_type.type == enums.DATA_TYPE.STRING: control = STRING_CONTROL.instance()
 	elif header_type.type == enums.DATA_TYPE.STRING_MULTILINE: control = STRING_MULTILINE_CONTROL.instance()
 	elif header_type.type == enums.DATA_TYPE.BOOLEAN: control = BOOLEAN_CONTROL.instance()
@@ -32,7 +36,9 @@ func add_control(header_name, header_type, item_values):
 	elif header_type.type == enums.DATA_TYPE.COLOR: control = COLOR_CONTROL.instance()
 	elif header_type.type == enums.DATA_TYPE.REFERENCE: control = REFERENCE_CONTROL.instance()
 	elif header_type.type == enums.DATA_TYPE.STRUCTURE: control = STRUCTURE_CONTROL.instance()
-	else: control = INVALID_CONTROL.instance()
+	elif header_type.type == enums.DATA_TYPE.VECTOR2: control = VECTOR2_CONTROL.instance()
+	elif header_type.type == enums.DATA_TYPE.VECTOR3: control = VECTOR3_CONTROL.instance()
+	elif header_type.type == enums.DATA_TYPE.RECT: control = RECT_CONTROL.instance()
 	add_child(control)
 	control.set_name(header_name)
 	if header_type.type == enums.DATA_TYPE.STRUCTURE:
