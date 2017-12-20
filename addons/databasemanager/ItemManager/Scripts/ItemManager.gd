@@ -1,5 +1,5 @@
 tool
-extends VBoxContainer
+extends GridContainer
 
 const enums = preload("../../Enums.gd")
 
@@ -10,14 +10,16 @@ const COLOR_CONTROL = preload("../Controls/ColorControl.tscn")
 const BOOLEAN_CONTROL = preload("../Controls/CheckButtonControl.tscn")
 const INVALID_CONTROL = preload("../Controls/InvalidControl.tscn")
 const REFERENCE_CONTROL = preload("../Controls/ReferenceControl.tscn")
+const STRUCTURE_CONTROL = preload("../Controls/StructureControl.tscn")
 
 var control_list = []
 
 func populate_control_list(header, item_values):
 	for i in header:
 		var values
-		if item_values.has(i.name):
-			values = item_values[i.name]
+		if item_values != null:
+			if item_values.has(i.name):
+				values = item_values[i.name]
 		add_control(i.name, i.type, values)
 	pass
 
@@ -29,10 +31,14 @@ func add_control(header_name, header_type, item_values):
 	elif header_type.type == enums.DATA_TYPE.NUMBER: control = NUMBER_CONTROL.instance()
 	elif header_type.type == enums.DATA_TYPE.COLOR: control = COLOR_CONTROL.instance()
 	elif header_type.type == enums.DATA_TYPE.REFERENCE: control = REFERENCE_CONTROL.instance()
+	elif header_type.type == enums.DATA_TYPE.STRUCTURE: control = STRUCTURE_CONTROL.instance()
 	else: control = INVALID_CONTROL.instance()
 	add_child(control)
 	control.set_name(header_name)
-	control.prepare(header_type)
+	if header_type.type == enums.DATA_TYPE.STRUCTURE:
+		control.prepare(header_type, item_values)
+	else:
+		control.prepare(header_type)
 	control.unclean(item_values)
 	control_list.append(control)
 

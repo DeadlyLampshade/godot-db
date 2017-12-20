@@ -13,10 +13,11 @@ margin_bottom = 40.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
-size_flags_horizontal = 1
+size_flags_horizontal = 3
 size_flags_vertical = 1
 alignment = 0
 script = ExtResource( 1 )
+_sections_unfolded = [ "Size Flags" ]
 
 [node name="Label" type="Label" parent="."]
 

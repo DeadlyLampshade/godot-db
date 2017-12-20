@@ -19,5 +19,6 @@ const DATA_TYPE_LIST = [
 	["Boolean", DATA_TYPE.BOOLEAN],
 	["Color", DATA_TYPE.COLOR],
 	["Reference", DATA_TYPE.REFERENCE],
+	["Structure", DATA_TYPE.STRUCTURE],
 	#["Array", DATA_TYPE.ARRAY]
 ]

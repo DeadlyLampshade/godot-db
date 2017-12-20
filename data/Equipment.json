@@ -1,0 +1,129 @@
+{
+	"header": [
+		{
+			"type": {
+				"type": 0
+			},
+			"name": "Name"
+		},
+		{
+			"type": {
+				"type": 1
+			},
+			"name": "Description"
+		},
+		{
+			"type": {
+				"type": 3
+			},
+			"name": "Can Be Sold"
+		},
+		{
+			"type": {
+				"type": 2
+			},
+			"name": "Damage Reduction"
+		},
+		{
+			"type": {
+				"type": 4,
+				"reference": "Equipment"
+			},
+			"name": "Becomes On Death"
+		},
+		{
+			"type": {
+				"type": 5,
+				"arguments": {
+					"row_count": 2,
+					"contents": [
+						{
+							"type": {
+								"type": 2
+							},
+							"name": "Strength"
+						},
+						{
+							"type": {
+								"type": 2
+							},
+							"name": "Dexterity"
+						},
+						{
+							"type": {
+								"type": 2
+							},
+							"name": "Intelligence"
+						},
+						{
+							"type": {
+								"type": 2
+							},
+							"name": "Constitution"
+						},
+						{
+							"type": {
+								"type": 2
+							},
+							"name": "Wisdom"
+						},
+						{
+							"type": {
+								"type": 2
+							},
+							"name": "Charisma"
+						}
+					]
+				}
+			},
+			"name": "Stats"
+		}
+	],
+	"contents": {
+		"IronArmor": {
+			"Name": "Iron Armor",
+			"Description": "Good Defense!",
+			"Can Be Sold": true,
+			"Damage Reduction": 10,
+			"Becomes On Death": "BrokenIronArmor",
+			"New": ""
+		},
+		"BrokenIronArmor": {
+			"Name": "Broken Iron Armor",
+			"Description": "It broke.",
+			"Can Be Sold": false,
+			"Damage Reduction": 0,
+			"Becomes On Death": null,
+			"Stats": {
+				"Strength": 0,
+				"Dexterity": 0,
+				"Intelligence": 0,
+				"Constitution": 0,
+				"Wisdom": 0,
+				"Charisma": 0
+			}
+		},
+		"LeatherArmor": {
+			"Name": "LeatherArmor",
+			"Description": "It\'s Leather Armor.",
+			"Can Be Sold": true,
+			"Damage Reduction": 5,
+			"Becomes On Death": "BrokenLeatherArmor",
+			"Stats": {
+				"Strength": 10,
+				"Dexterity": 10,
+				"Intelligence": 10,
+				"Constitution": 10,
+				"Wisdom": 10,
+				"Charisma": 20
+			}
+		},
+		"BrokenLeatherArmor": {
+			"Name": "Broken Leather Armor",
+			"Description": "It\'s broken.",
+			"Can Be Sold": false,
+			"Damage Reduction": 0,
+			"Becomes On Death": null
+		}
+	}
+}
