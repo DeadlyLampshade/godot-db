@@ -11,7 +11,7 @@ static func write_value(value, tabs=0):
 	var string = ""
 	if typeof(value) in [TYPE_INT, TYPE_REAL]:
 		string += "%s" % value
-	elif typeof(value) == TYPE_BOOL:
+	elif typeof(value) in [TYPE_BOOL, TYPE_NIL]:
 		string += "%s" % str(value).to_lower()
 	elif typeof(value) == TYPE_DICTIONARY:
 		string += write_dictionary(value, tabs, false)
