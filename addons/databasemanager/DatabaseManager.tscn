@@ -4,21 +4,20 @@
 [ext_resource path="res://addons/databasemanager/VariableManager/VariableManager.tscn" type="PackedScene" id=2]
 [ext_resource path="res://addons/databasemanager/ItemManager/ItemManager.tscn" type="PackedScene" id=3]
 
-[node name="PanelContainer" type="PanelContainer"]
+[node name="PanelContainer" type="PanelContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 1 )
 _sections_unfolded = [ "Size Flags" ]
 
-[node name="BoxContainer" type="VBoxContainer" parent="."]
+[node name="BoxContainer" type="VBoxContainer" parent="." index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -26,42 +25,39 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 1017.0
-margin_bottom = 593.0
+margin_right = 1273.0
+margin_bottom = 713.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 0
 _sections_unfolded = [ "Size Flags" ]
 
-[node name="MenuOptions" type="HBoxContainer" parent="BoxContainer"]
+[node name="MenuOptions" type="HBoxContainer" parent="BoxContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 1010.0
+margin_right = 1266.0
 margin_bottom = 22.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 1
 size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 0
 _sections_unfolded = [ "Size Flags", "Theme" ]
 
-[node name="SaveButton" type="ToolButton" parent="BoxContainer/MenuOptions"]
+[node name="SaveAllButton" type="ToolButton" parent="BoxContainer/MenuOptions" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 41.0
+margin_right = 62.0
 margin_bottom = 22.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
@@ -69,20 +65,41 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-text = "Save"
+text = "Save All"
 flat = true
+align = 1
 
-[node name="ReloadButton" type="ToolButton" parent="BoxContainer/MenuOptions"]
+[node name="SaveOneButton" type="ToolButton" parent="BoxContainer/MenuOptions" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 45.0
-margin_right = 100.0
+margin_left = 66.0
+margin_right = 138.0
 margin_bottom = 22.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Save One"
+flat = true
+align = 1
+
+[node name="ReloadButton" type="ToolButton" parent="BoxContainer/MenuOptions" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 142.0
+margin_right = 197.0
+margin_bottom = 22.0
+rect_pivot_offset = Vector2( 0, 0 )
 mouse_filter = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
@@ -92,67 +109,80 @@ shortcut = null
 group = null
 text = "Reload"
 flat = true
+align = 1
 
-[node name="MainContainer" type="HBoxContainer" parent="BoxContainer"]
+[node name="MainContainer" type="HBoxContainer" parent="BoxContainer" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 26.0
-margin_right = 1010.0
-margin_bottom = 586.0
+margin_right = 1266.0
+margin_bottom = 706.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 0
 _sections_unfolded = [ "Size Flags" ]
 
-[node name="TreeContainer" type="VBoxContainer" parent="BoxContainer/MainContainer"]
+[node name="TreeContainer" type="VBoxContainer" parent="BoxContainer/MainContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 251.0
-margin_bottom = 560.0
+margin_right = 315.0
+margin_bottom = 680.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 1
 alignment = 0
 _sections_unfolded = [ "Size Flags" ]
 
-[node name="Tree" type="Tree" parent="BoxContainer/MainContainer/TreeContainer"]
+[node name="Tree" type="Tree" parent="BoxContainer/MainContainer/TreeContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 251.0
-margin_bottom = 512.0
+margin_right = 315.0
+margin_bottom = 632.0
 rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = true
 mouse_filter = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 _sections_unfolded = [ "Size Flags" ]
 
-[node name="AddDataType" type="Button" parent="BoxContainer/MainContainer/TreeContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="BoxContainer/MainContainer/TreeContainer" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 516.0
-margin_right = 251.0
-margin_bottom = 536.0
+margin_top = 636.0
+margin_right = 315.0
+margin_bottom = 656.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
+mouse_filter = 1
 size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 0
+
+[node name="AddDataType" type="Button" parent="BoxContainer/MainContainer/TreeContainer/HBoxContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 155.0
+margin_bottom = 20.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 0
+size_flags_horizontal = 3
 size_flags_vertical = 1
 toggle_mode = false
 enabled_focus_mode = 2
@@ -160,18 +190,41 @@ shortcut = null
 group = null
 text = "Add Data Type"
 flat = false
+align = 1
+_sections_unfolded = [ "Size Flags" ]
 
-[node name="AddItem" type="Button" parent="BoxContainer/MainContainer/TreeContainer"]
+[node name="CopyDataType" type="Button" parent="BoxContainer/MainContainer/TreeContainer/HBoxContainer" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 540.0
-margin_right = 251.0
-margin_bottom = 560.0
+margin_left = 159.0
+margin_right = 315.0
+margin_bottom = 20.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Copy Data Type"
+flat = false
+align = 1
+_sections_unfolded = [ "Size Flags" ]
+
+[node name="AddItem" type="Button" parent="BoxContainer/MainContainer/TreeContainer" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 660.0
+margin_right = 315.0
+margin_bottom = 680.0
+rect_pivot_offset = Vector2( 0, 0 )
 mouse_filter = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
@@ -181,18 +234,18 @@ shortcut = null
 group = null
 text = "Add Item"
 flat = false
+align = 1
 
-[node name="DataContainer" type="VBoxContainer" parent="BoxContainer/MainContainer"]
+[node name="DataContainer" type="VBoxContainer" parent="BoxContainer/MainContainer" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 255.0
-margin_right = 1010.0
-margin_bottom = 560.0
+margin_left = 319.0
+margin_right = 1266.0
+margin_bottom = 680.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -201,22 +254,21 @@ custom_constants/separation = 5
 alignment = 0
 _sections_unfolded = [ "Size Flags", "custom_constants" ]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="BoxContainer/MainContainer/DataContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="BoxContainer/MainContainer/DataContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 755.0
+margin_right = 947.0
 margin_bottom = 24.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 1
 size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 0
 
-[node name="Label" type="Label" parent="BoxContainer/MainContainer/DataContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="BoxContainer/MainContainer/DataContainer/HBoxContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -226,7 +278,6 @@ margin_top = 5.0
 margin_right = 15.0
 margin_bottom = 19.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 2
 size_flags_horizontal = 1
 size_flags_vertical = 4
@@ -235,17 +286,16 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="LineEdit" type="LineEdit" parent="BoxContainer/MainContainer/DataContainer/HBoxContainer"]
+[node name="LineEdit" type="LineEdit" parent="BoxContainer/MainContainer/DataContainer/HBoxContainer" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 19.0
-margin_right = 755.0
+margin_right = 947.0
 margin_bottom = 24.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 0
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -256,16 +306,17 @@ caret_blink_speed = 0.65
 context_menu_enabled = true
 _sections_unfolded = [ "Size Flags" ]
 
-[node name="ScrollContainer" type="ScrollContainer" parent="BoxContainer/MainContainer/DataContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="BoxContainer/MainContainer/DataContainer" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 29.0
-margin_right = 755.0
-margin_bottom = 560.0
+margin_right = 947.0
+margin_bottom = 680.0
 rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = true
 mouse_filter = 0
 size_flags_horizontal = 1
 size_flags_vertical = 3
@@ -274,19 +325,23 @@ scroll_horizontal = true
 scroll_vertical = true
 _sections_unfolded = [ "Size Flags", "Theme" ]
 
-[node name="VariableManager" parent="BoxContainer/MainContainer/DataContainer/ScrollContainer" instance=ExtResource( 2 )]
+[node name="VariableManager" parent="BoxContainer/MainContainer/DataContainer/ScrollContainer" index="0" instance=ExtResource( 2 )]
 
 visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 755.0
+margin_right = 947.0
 margin_bottom = 34.0
 
-[node name="ItemManager" parent="BoxContainer/MainContainer/DataContainer/ScrollContainer" instance=ExtResource( 3 )]
+[node name="ItemManager" parent="BoxContainer/MainContainer/DataContainer/ScrollContainer" index="1" instance=ExtResource( 3 )]
 
+margin_right = 947.0
+margin_bottom = 651.0
 _sections_unfolded = [ "Margin", "Mouse", "Size Flags", "custom_constants" ]
 
-[connection signal="pressed" from="BoxContainer/MenuOptions/SaveButton" to="." method="save_data"]
+[connection signal="pressed" from="BoxContainer/MenuOptions/SaveAllButton" to="." method="save_data"]
+
+[connection signal="pressed" from="BoxContainer/MenuOptions/SaveOneButton" to="." method="save_one_item"]
 
 [connection signal="pressed" from="BoxContainer/MenuOptions/ReloadButton" to="." method="reload_database"]
 

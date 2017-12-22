@@ -1,5 +1,5 @@
 tool
-extends PanelContainer
+extends Control
 
 signal reference_id_updated
 
@@ -9,7 +9,8 @@ const JSON_WRITER = preload("NewJSONWriter.gd")
 onready var tree_container = $BoxContainer/MainContainer/TreeContainer
 onready var tree = tree_container.get_node("Tree")
 onready var add_item_button = tree_container.get_node("AddItem")
-onready var add_datatype_button = tree_container.get_node("AddDataType")
+onready var add_datatype_button = tree_container.get_node("HBoxContainer/AddDataType")
+onready var copy_datatype_button = tree_container.get_node("HBoxContainer/CopyDataType")
 
 onready var id_edit = $BoxContainer/MainContainer/DataContainer/HBoxContainer/LineEdit
 
@@ -25,6 +26,16 @@ var dontchange = false
 
 var current_selection
 
+func serialize_item(item):
+	var dictionary = {
+		"name": item.get_text(0), 
+		"contents": {
+			"header": item.get_metadata(0), 
+			"contents": get_all_children(item)
+		}
+	}
+	save_file(dictionary)
+
 func serialize_data():
 	if current_selection != null:
 		if selected_item_is_item(current_selection):
@@ -33,14 +44,7 @@ func serialize_data():
 			current_selection.set_metadata(0, variableManager.clean())
 	var child = root.get_children()
 	while(child != null):
-		var dictionary = {
-			"name": child.get_text(0), 
-			"contents": {
-				"header": child.get_metadata(0), 
-				"contents": get_all_children(child)
-			}
-		}
-		save_file(dictionary)
+		serialize_item(child)
 		child = child.get_next()
 	disable_save_and_load_temp()
 
@@ -61,6 +65,21 @@ func save_file(dictionary):
 	file.close()
 	pass
 
+
+func save_one_item():
+	if current_selection != null:
+		if selected_item_is_datatype(current_selection):
+			var dir = Directory.new()
+			var file = File.new()
+			var error = OK
+			
+			if !dir.dir_exists("res://data"):
+				error = dir.make_dir("res://data")
+			
+			serialize_item(current_selection)
+	else:
+		print("Select the datatype first")
+
 func save_data():
 	var dir = Directory.new()
 	var file = File.new()
@@ -68,7 +87,6 @@ func save_data():
 	
 	if !dir.dir_exists("res://data"):
 		error = dir.make_dir("res://data")
-		assert(error == OK)
 	
 	serialize_data()
 
@@ -119,10 +137,17 @@ func _ready():
 	id_edit.connect("text_entered", self, "change_id")
 	tree.connect("item_selected", self, "select_item")
 	add_item_button.connect("pressed", self, "create_item_for_selection")
+	copy_datatype_button.connect("pressed", self, "copy_data_type")
 	add_datatype_button.connect("pressed", self, "create_data_type_and_select")
 	tree.set_hide_root(true)
 	load_data()
 	pass
+
+func copy_data_type():
+	if current_selection != null:
+		if selected_item_is_datatype(current_selection):
+			var copy = create_data_type(current_selection.get_text(0) + "Copy")
+			copy.set_metadata(0, current_selection.get_metadata(0))
 
 func _unhandled_input(event):
 	if tree.has_focus():
@@ -150,6 +175,14 @@ func selected_item_is_datatype(variant):
 func selected_item_is_item(variant):
 	return variant.get_parent() in data_type
 
+func clean_and_maintain(metadata, value):
+	var dict = metadata
+	var keys = value.keys()
+	var values = value.values()
+	for i in range(value.size()):
+		dict[keys[i]] = values[i]
+	return dict
+
 func select_item():
 	
 	if current_selection != null:
@@ -159,7 +192,7 @@ func select_item():
 			variableManager.erase_controls()
 		
 		if selected_item_is_item(current_selection):
-			current_selection.set_metadata(0, itemManager.clean())
+			current_selection.set_metadata(0, clean_and_maintain(current_selection.get_metadata(0), itemManager.clean()))
 			itemManager.clear_control_list()
 	
 	current_selection = tree.get_selected()
@@ -209,7 +242,7 @@ func create_item(name, dt):
 func disable_save_and_load_temp():
 	$BoxContainer/MenuOptions/SaveButton.disabled = true
 	$BoxContainer/MenuOptions/ReloadButton.disabled = true
-	yield(get_tree().create_timer(2), "timeout")
+	yield(get_tree().create_timer(1), "timeout")
 	$BoxContainer/MenuOptions/SaveButton.disabled = false
 	$BoxContainer/MenuOptions/ReloadButton.disabled = false
 

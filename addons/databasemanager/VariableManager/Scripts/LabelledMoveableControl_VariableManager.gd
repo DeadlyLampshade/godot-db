@@ -1,7 +1,7 @@
 tool
 extends "MoveableControl_VariableManager.gd"
 
-onready var label = $TopBar/LineEdit setget set_label, get_label
+onready var label = $TopBar/Start/LineEdit setget set_label, get_label
 
 func set_label(value):
 	label.text = value

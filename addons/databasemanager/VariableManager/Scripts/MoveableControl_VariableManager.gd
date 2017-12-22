@@ -1,8 +1,8 @@
 tool
 extends VBoxContainer
 
-onready var variable_type = $TopBar/VariableType
-onready var BonusPanel = $BonusOptions
+onready var variable_type = $TopBar/End/VariableType
+onready var StructureOptions = $StructureOptions
 
 func move_up():
 	var current_position = get_position_in_parent()
@@ -14,7 +14,6 @@ func move_down():
 	if current_position < child_count: get_parent().move_child(self, get_position_in_parent() + 1)
 
 func delete_control():
-	print(_clean())
 	queue_free()
 
 func _clean():

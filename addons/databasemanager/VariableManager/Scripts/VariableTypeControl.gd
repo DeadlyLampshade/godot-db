@@ -3,9 +3,10 @@ extends HBoxContainer
 
 const enums = preload("../../Enums.gd")
 
-onready var bonus_panel = get_node("../../BonusOptions")
+export(NodePath) var StructureOptions = "../../../StructureOptions"
 
 func _ready():
+	StructureOptions = get_node(StructureOptions)
 	set_options_variable_type()
 	set_options_data_types()
 	$VariableType.connect("item_selected", self, "select_variable_type")
@@ -15,7 +16,7 @@ func clean():
 	if dict.type == enums.DATA_TYPE.REFERENCE:
 		dict.reference = $ReferenceType.get_item_text($ReferenceType.selected)
 	if dict.type == enums.DATA_TYPE.STRUCTURE:
-		dict.arguments = bonus_panel.clean()
+		dict.arguments = StructureOptions.clean()
 	return dict
 
 func unclean(variant):
@@ -24,9 +25,9 @@ func unclean(variant):
 		$ReferenceType.show()
 		$ReferenceType.select(find_name(variant.reference))
 	if variant.type == enums.DATA_TYPE.STRUCTURE:
-		bonus_panel.show()
+		StructureOptions.show()
 		if variant.has("arguments"):
-			bonus_panel.unclean(variant.arguments)
+			StructureOptions.unclean(variant.arguments)
 
 func find_base_variable_type(value):
 	for i in range($VariableType.get_item_count()):
@@ -47,7 +48,7 @@ func select_variable_type(ID):
 			$ReferenceType.show()
 		enums.DATA_TYPE.STRUCTURE:
 			$ReferenceType.hide()
-			bonus_panel.show()
+			StructureOptions.show()
 		_:
 			$ReferenceType.hide()
 
