@@ -2,14 +2,13 @@
 
 [ext_resource path="res://addons/databasemanager/VariableManager/Scripts/VariableManager.tres.gd" type="Script" id=1]
 
-[node name="MainContainer" type="VBoxContainer"]
+[node name="MainContainer" type="VBoxContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -18,16 +17,15 @@ alignment = 0
 script = ExtResource( 1 )
 _sections_unfolded = [ "Pause", "Size Flags", "Visibility", "custom_constants" ]
 
-[node name="AddOption" type="Button" parent="."]
+[node name="AddOption" type="Button" parent="." index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 1024.0
+margin_right = 1280.0
 margin_bottom = 20.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
@@ -37,35 +35,34 @@ shortcut = null
 group = null
 text = "Add Variable"
 flat = false
+align = 1
 _sections_unfolded = [ "Size Flags" ]
 
-[node name="HSeparator" type="HSeparator" parent="."]
+[node name="HSeparator" type="HSeparator" parent="." index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 25.0
-margin_right = 1024.0
+margin_right = 1280.0
 margin_bottom = 29.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 _sections_unfolded = [ "Size Flags" ]
 
-[node name="ControlContainer" type="VBoxContainer" parent="."]
+[node name="ControlContainer" type="VBoxContainer" parent="." index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 34.0
-margin_right = 1024.0
+margin_right = 1280.0
 margin_bottom = 34.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 1
 size_flags_horizontal = 1
 size_flags_vertical = 1

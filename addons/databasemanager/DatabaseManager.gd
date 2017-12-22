@@ -67,22 +67,21 @@ func save_file(dictionary):
 
 
 func save_one_item():
+	var dir = Directory.new()
+	var error = OK
+	if !dir.dir_exists("res://data"):
+		error = dir.make_dir("res://data")
 	if current_selection != null:
 		if selected_item_is_datatype(current_selection):
-			var dir = Directory.new()
-			var file = File.new()
-			var error = OK
-			
-			if !dir.dir_exists("res://data"):
-				error = dir.make_dir("res://data")
-			
 			serialize_item(current_selection)
+		elif selected_item_is_datatype(current_selection.get_parent()):
+			serialize_item(current_selection.get_parent())
+		disable_save_and_load_temp()
 	else:
 		print("Select the datatype first")
 
 func save_data():
 	var dir = Directory.new()
-	var file = File.new()
 	var error = OK
 	
 	if !dir.dir_exists("res://data"):
@@ -144,21 +143,24 @@ func _ready():
 	pass
 
 func copy_data_type():
-	if current_selection != null:
-		if selected_item_is_datatype(current_selection):
-			var copy = create_data_type(current_selection.get_text(0) + "Copy")
-			copy.set_metadata(0, current_selection.get_metadata(0))
+	var selected = selected_or_parent(current_selection)
+	if selected != null:
+		var copy = create_data_type(current_selection.get_text(0) + "Copy")
+		copy.set_metadata(0, current_selection.get_metadata(0))
 
 func _unhandled_input(event):
 	if tree.has_focus():
 		if event is InputEventKey:
 			if event.scancode == KEY_DELETE and event.pressed and !event.echo:
 				if current_selection != null:
+					if selected_item_is_datatype(current_selection):
+						var id = data_type.find(current_selection)
+						data_type.remove(id)
 					current_selection.free()
 					current_selection = null
 					variableManager.erase_controls()
 					itemManager.clear_control_list()
-					tree.accept_event()
+					accept_event()
 
 func create_item_for_selection():
 	if current_selection == null: return
@@ -168,6 +170,15 @@ func create_item_for_selection():
 	elif current_selection.get_parent() in data_type: 
 		var parent = current_selection.get_parent()
 		create_item("New Item", data_type.find(parent)).select(0)
+
+func selected_or_parent(variant):
+	if variant == null: return null
+	if selected_item_is_datatype(variant):
+		return variant
+	elif selected_item_is_datatype(variant.get_parent()):
+		return variant.get_parent()
+	else:
+		return null
 
 func selected_item_is_datatype(variant):
 	return variant in data_type
@@ -184,7 +195,6 @@ func clean_and_maintain(metadata, value):
 	return dict
 
 func select_item():
-	
 	if current_selection != null:
 		
 		if selected_item_is_datatype(current_selection):
@@ -240,10 +250,12 @@ func create_item(name, dt):
 	return item
 
 func disable_save_and_load_temp():
-	$BoxContainer/MenuOptions/SaveButton.disabled = true
+	$BoxContainer/MenuOptions/SaveAllButton.disabled = true
+	$BoxContainer/MenuOptions/SaveOneButton.disabled = true
 	$BoxContainer/MenuOptions/ReloadButton.disabled = true
 	yield(get_tree().create_timer(1), "timeout")
-	$BoxContainer/MenuOptions/SaveButton.disabled = false
+	$BoxContainer/MenuOptions/SaveAllButton.disabled = false
+	$BoxContainer/MenuOptions/SaveOneButton.disabled = false
 	$BoxContainer/MenuOptions/ReloadButton.disabled = false
 
 func reload_database():

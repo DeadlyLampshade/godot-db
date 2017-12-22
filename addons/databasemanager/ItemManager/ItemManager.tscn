@@ -11,7 +11,6 @@ anchor_bottom = 0.0
 margin_right = 755.0
 margin_bottom = 531.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
